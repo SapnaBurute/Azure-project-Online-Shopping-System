@@ -1,0 +1,106 @@
+{% extends 'base.html'%}
+{% block content %}
+{% load manual_tag %}    
+{% load currency %}    
+
+<div class="m-3"></div>      
+
+  <div class="row">
+    
+    <!-- show side bar -->
+
+    <div class="col-lg-3">
+      <ul class="list-group">
+         <li><a class="list-group-item {% if category_id == None %} bg-info {% endif %}" href="/"> All Product </a> </li>
+        {% for field in fields %}
+        <li><a class="list-group-item {% if category_id == field.id %} bg-info {% endif %}" href="/?category_id={{field.id}}"> {{field.name}} </a> </li>
+       {% endfor %} 
+      </ul>
+
+    </div>
+    
+    <!-- show products -->
+    
+    <div class="col-lg-9">
+      <div class="row mx-auto">
+
+      {% for product in data %}  
+        
+        <div class="card mx-auto p-0  border-0 shadow my-2" style="width: 17rem;" id="{{product.id}}">
+          <img src="{{product.img_img.url}}" alt="image load failed" class="card-img-top">
+          <div class="card-body">
+            <h4 class="card-title">{{product.img_title}}</h4>
+            <h5 class="card-text">{{product.price|currency}}</h5>
+            <p class="card-text"> {{product.img_desc}}
+          </p>
+          <form method="post">
+            {% csrf_token %}
+            <input type="text" hidden value="{{product.id}}" name="product_id">
+            <h5></h5>
+            <div class=" d-flex align-items-end flex-column">
+        {% if product.id|is_in_cart:request.session.cart  %}
+              <div class="container form-group">
+                <!-- managing cart decrement button  -->
+                <form method="post " action="">
+                  {% csrf_token %}
+                  <input type="text" value="{{product.id}}" hidden name="decrement_cart">
+                  <input type="text" value="True" hidden name="remove">
+                  <input type="submit"  value="-">
+                </form>
+                
+                <span>{{product.id|cart_quantity:request.session.cart}} in cart</span>
+                
+               <!-- managing cart Increment button  --> 
+                <form method="post" action="">
+                  {% csrf_token %}
+                  <input type="text" value="{{product.id}}" hidden name="increment_cart">
+                  <input type="submit"  value="+">
+                </form>
+              </div>
+          {% else %}
+              <button class="btn btn-outline-success"> Add to cart</button>
+              
+          {% endif %}
+             
+            </div>
+         </form>
+          </div>
+          </div>
+          {% empty %}
+          NO product available
+        {% endfor %}
+
+   
+       </div></div>
+  </div>  
+
+
+
+
+
+
+
+
+      <!-- item shown in card -->
+      
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+<form method="post">
+  {% csrf_token %}
+  <input type="text" value="{{product.id}}" hidden name="increment_cart">
+  <input type="submit"  value="+">
+</form>

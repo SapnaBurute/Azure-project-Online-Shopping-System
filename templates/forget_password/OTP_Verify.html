@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-4">
+    <div class="col-lg-4 col-md-6 p-2 mx-auto border rounded  m-4" >
+        <h3 class="alert-light text-center p-2 border rounded my-auto">Forget Your Password</h3>
+        {% if error_massege != None %}
+        <div class="alert-danger p-2 mt-2 rounded">{{error_massege}}</div>
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+           
+            <div class="form-group m-4">
+                <label for="email">OTP :</label>
+                <input type="text" class="form-control form-control-sm" name="OTP" id="OTP" placeholder="ex : 256845">
+            </div>
+           
+            <div class="form-group m-4">
+                <div class="form-group mt-2 px-2 m-4">
+                 <div class="d-flex align-items-end flex-column"> <input type="submit" class=" btn btn-info" value="Verify OTP">
+                </div>
+                </div> 
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

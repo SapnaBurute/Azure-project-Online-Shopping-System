@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load manual_tag %}
+{% load currency %}
+
+
+<div class="container border rounded p-3">
+    <div class="display-4 border p-3 m-1 alert-secondary rounded-1 shadow m-2">
+        Your Orders
+    </div> 
+    {% if orders %}
+    <table class="table table-light table-striped ">
+    <thead>
+        <tr>
+            <td>Sn.</td>
+            <td>Image</td>
+            <td>Product</td>
+            <td>Price</td>
+            <td>Quantiti</td>
+            <td>Status</td>
+            <td>Date</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td><img src="{{order.product.img_img.url}}" alt="" class="rounded rounded-circle" style="height: 50px; width: auto; "></td>
+            <td>{{order.product}}</td>
+            <td>{{order.product_price | currency}}</td>
+            <td>{{order.product_quantity }}</td>
+            <td>Success</td>
+            <td>{{order.date }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        
+    </tfoot>
+</table>
+
+    
+
+</div>
+  {% else %}
+     <div class="display-6 mt-lg-5 mt-3">
+         Not yet Ordered
+     </div> 
+     <div style="align-items: flex-end; justify-content: end; display: flex;">
+     <span class="text-black-50" >Go to &nbsp; </span>  
+     <a href="{% url 'homePage' %}" class="text-decoration-none">Products Page</a>
+    </div>
+    {% endif %}
+</div>
+
+
+
+
+  
+  
+
+
+
+
+
+{% endblock %}

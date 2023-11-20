@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-4">
+    <div class="col-lg-4 col-md-6 p-2 mx-auto border rounded  m-4" >
+        <h3 class="alert-light text-center p-2 border rounded my-auto">Login User</h3>
+        {% if error_massege != None %}
+        <div class="alert-danger p-2 mt-2 rounded">{{error_massege}}</div>
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group m-4">
+                <label for="email">Email :</label>
+                <input type="text" class="form-control form-control-sm" name="email" id="email" placeholder="email@gmail.com">
+            </div>
+            <div class="form-group m-4">
+                <lable for="password">Password :</lable>
+                <input type="password" class="form-control form-control-sm" name="password" id="password" placeholder="*********">
+            </div>
+            <div class="form-group mt-2 mx-1 px-2 row">
+                <div class="text-black-50 alert-light col-6 mt-2"><a href="{% url 'forget_password' %}" class="text-decoration-none"> Forget Password </a> </div>
+             <div class="d-flex align-items-end flex-column col-6">  <input type="submit" class=" btn btn-info" value="Sign In">
+            </div>
+            <div class="text-black-50 alert-light mt-2">New user ,Please <a href="{% url 'signUp_page' %}" class="text-decoration-none"> sign Up </a> </div>
+        </div> 
+
+        </form>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

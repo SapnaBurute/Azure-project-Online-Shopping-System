@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="container-fluid">
+
+<div class="row bg-black bg-opacity-10 rounded-2 shadow shadow-dark py-3">
+<div class="col-lg-3 col-sm-3">
+    
+    <img src="
+    {% if customer.image %}
+    {{customer.image.url}}
+    {% else %}
+    {% static 'static_image/default.jpeg' %}
+    {% endif %}
+    " alt="PROFILE IMAGE" class="rounded-circle shadow border border-2 border-white" height="150px"> 
+   
+    {% if edit_profile %}
+    <form method="post" action=""  enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="upload_image"  class="p-2">  
+    <input type="text" hidden value="True" name="image">
+   <input type="submit" value="Upload"> 
+     </form>
+    {% endif %}
+
+</div>
+
+<div class="col-lg-9 col-sm-9 my-auto mx-auto row  ">
+   <span class="display-5 "><strong> {{customer.first_name}} {{customer.last_name}}</strong></span>
+   <span class="text-primary align-items-end ">{{customer.email}}</span>
+    
+ </div>
+
+</div>
+
+<BR>
+<h4 class="text">Account</h4>
+<hr class="border border-3 border-dark ">
+
+{% if not edit_profile %}
+<div class="row ">
+  
+    
+     <!-- row -->
+    <div class="col-lg-3 my-1 ">
+    <strong>    Name :</strong>
+    </div>
+    <div class="col-lg-9 my-1 ">
+        {{customer.first_name}} {{customer.last_name}}
+    </div>
+  <!-- row -->
+  <div class="col-lg-3 my-1 ">
+ <strong>   Email :</strong>
+</div>
+<div class="col-lg-9 my-1 ">
+    {{customer.email}} 
+</div>
+
+
+  <!-- row -->
+  <div class="col-lg-3 my-1 ">
+    <strong> Password:</strong>
+</div>
+<div class="col-lg-9 my-1 ">
+    ************
+</div>
+
+  <!-- row -->
+  <div class="col-lg-3">
+   <strong>Address :</strong> 
+</div>
+<div class="col-lg-9">
+   {{customer.address}}
+</div>
+</div>
+</div>
+
+<div class="text-black opacity-75 p-2 mt-3">
+    <form method="post">
+        {% csrf_token %}
+    Click Here to
+    <!-- <a href="user-profile/?profile_id=1" > Edit Profile </a> -->
+    <input type="text" value="True" hidden name="edit_profile">
+    <input type="submit" value="Edit Profile" class="text-decoration-none border border-0">
+</form>    
+</div>
+
+{% else %}
+
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group m-2">
+        <label for="first_name">First Name :</label>
+        <input type="text" name="first_name" class="form-control form-control-sm" placeholder="first_name">
+    </div>
+
+
+    <div class="form-group m-2">
+        <label for="last_name">Last Name :</label>
+        <input type="text" name="last_name" class="form-control form-control-sm" placeholder="last_name">
+    </div>
+
+    <div class="form-group m-2">
+        <label for="email">Email :</label>
+        <input type="text" name="email" readonly class="form-control form-control-sm" placeholder="NOt changeable">
+    </div>
+
+    <div class="form-group m-2">
+        <label for="phone_number">Phone nu :</label>
+        <input type="text" name="phone_number"  class="form-control form-control-sm" placeholder="phone_number">
+    </div>
+
+    <div class="form-group m-2">
+        <label for="address">Address :</label>
+        <input type="text" name="address" class="form-control form-control-sm" placeholder="address">
+    </div>
+
+    <div class="form-group m-2">
+        <label for="password">Password :</label>
+        <input type="password" name="password" class="form-control form-control-sm" placeholder="password">
+        <p class="text-muted" style="font-size: smaller;">Password must be matched</p>
+    </div>
+
+    <input type="text" hidden value="True" name="update_profile">
+    <input type="submit" class="btn btn-outline-success" value="Update details">
+</form>
+
+
+
+{% endif %}
+
+
+
+{% endblock %}

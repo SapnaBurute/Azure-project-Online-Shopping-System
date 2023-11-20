@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container-fluid">
+
+<div class="row bg-black bg-opacity-10 rounded-2 shadow shadow-dark py-3">
+<div class="col-lg-3 col-sm-3">
+    <img src="https://picsum.photos/200" alt="PROFILE IMAGE" class="rounded-circle shadow border border-2 border-white" height="150px"> 
+
+
+
+</div>
+
+<div class="col-lg-9 col-sm-9 my-auto mx-auto row  ">
+   <span class="display-5 "><strong> {{customer.first_name}} {{customer.last_name}}</strong></span>
+   <span class="text-primary align-items-end ">{{customer.email}}</span>
+    
+ </div>
+
+</div>
+
+<BR>
+<h4 class="text">Account</h4>
+<hr class="border border-3 border-dark ">
+
+<div class="row ">
+  
+    
+     <!-- row -->
+    <div class="col-lg-3 my-1 ">
+    <strong>    Name :</strong>
+    </div>
+    <div class="col-lg-9 my-1 ">
+        {{customer.first_name}} {{customer.last_name}}
+    </div>
+  <!-- row -->
+  <div class="col-lg-3 my-1 ">
+ <strong>   Email :</strong>
+</div>
+<div class="col-lg-9 my-1 ">
+    {{customer.email}} 
+</div>
+
+
+  <!-- row -->
+  <div class="col-lg-3 my-1 ">
+    <strong> Password:</strong>
+</div>
+<div class="col-lg-9 my-1 ">
+    ************
+</div>
+
+  <!-- row -->
+  <div class="col-lg-3">
+   <strong>Address :</strong> 
+</div>
+<div class="col-lg-9">
+   Badrow rewa
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+{% endblock %}
