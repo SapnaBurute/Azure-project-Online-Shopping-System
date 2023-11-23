@@ -13,7 +13,7 @@ The aim of this project is to develop a web-based application that can provide a
 
 <h2>Description </h2>
 
- 	Online Shopping Application is a web-based project that allows users to shop online from various categories and vendors. Users can browse, search, select, and purchase products using a secure and reliable payment system. The project also provides a user-friendly interface and a database management system for storing and retrieving product and customer information. The project aims to create a virtual shop environment for users, where they can enjoy the convenience, variety, competitive prices, and global access of online shopping. The project also uses the latest web development technologies and follows the best practices of e-commerce.
+ 	Online Shopping Application is a web-based project that allows users to shop online from various categories and vendors. Users can browse, search, select, and purchase products using a secure and reliable payment system. The project also provides a user-friendly interface and a database management system for storing and retrieving product and customer information. The project aims to create a virtual shop environment for users, where they can enjoy the convenience, variety, competitive prices, and global access of online shopping. The project also uses the latest web development technologies and follows the best practices of e-commerce. <br>
 
 <h2>Key Features:</h2>
 
